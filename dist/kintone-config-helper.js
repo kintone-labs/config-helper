@@ -116,9 +116,9 @@
                   case "GROUP":
                       return acc.concat([
                           { type: layout.type, code: layout.code }
-                      ], layout.layout.map(function (childLayout) {
-                          return getFieldInfo(childLayout.fields);
-                      }));
+                      ], layout.layout
+                          .map(function (childLayout) { return getFieldInfo(childLayout.fields); })
+                          .reduce(function (acc, cur) { return acc.concat(cur); }, []));
                   case "SUBTABLE":
                       return acc.concat([
                           { type: layout.type, code: layout.code }

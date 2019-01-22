@@ -30,9 +30,9 @@ export function createGetFields(
           return [
             ...acc,
             { type: layout.type, code: layout.code },
-            ...layout.layout.map((childLayout: any) =>
-              getFieldInfo(childLayout.fields)
-            )
+            ...layout.layout
+              .map((childLayout: any) => getFieldInfo(childLayout.fields))
+              .reduce((acc: any, cur: any) => acc.concat(cur), [])
           ];
         case "SUBTABLE":
           return [
