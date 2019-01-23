@@ -34,8 +34,6 @@ This library provides methods to retrieve App field information such as the Fiel
       "css/config.css"
     ],
     "required_params": [
-      "number_field",
-      "table_field"
     ]
   }
 ```
@@ -64,7 +62,7 @@ KintoneConfigHelper.getFields().then(function(resp) {
 ### KintoneConfigHelper.getFields(FIELD_TYPE)
 Returns an array of field information that exist in the Kintone App, filtered with the specified field type.
 **FIELD_TYPE** must be specified as a String.  
-Multiple values may be specified for **FIELD_TYPE**, by specifying an object of Strings.  
+Multiple values may be specified for **FIELD_TYPE**, by specifying an Array of Strings.  
 Each responded array is an object, containing information such as Field Type, Field Code and the Field Name of the fields (responses will vary depending on the field type).
 
 #### Example Request 1 - retrieving all Text fields from the App
@@ -165,3 +163,6 @@ The following Field information are not yet included in the response:
 - Assignee
 - Lookups
 - Options of fields, such as the list of selectable choices in drop-downs
+
+## Notes
+kintone-config-helper uses the [Get Form Fields API](https://developer.kintone.io/hc/en-us/articles/115005509288) and the [Get Form Layout API](https://developer.kintone.io/hc/en-us/articles/115005509068) to obtain field information. The **preview** endpoint is used for these REST APIs, meaning that the Field information obtained with these APIs are field information saved in the pre-live settings of the Kintone App (i.e. before the App settings have been deployed to the live settings). This is to account for users who will go back and forth the Form editor and the Plug-in config page.
