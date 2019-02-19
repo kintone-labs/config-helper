@@ -80,17 +80,38 @@ export function createGetFields(
     );
   }
 
+  function flattenFieldsForSubtable(fieldsResp: any) {
+    return Object.keys(fieldsResp).reduce(
+      (fields, key) => {
+        if (fieldsResp[key].type === "SUBTABLE") {
+          return {
+            ...fields,
+            [key]: fieldsResp[key],
+            ...fieldsResp[key].fields
+          }
+        }
+        return {
+          ...fields,
+          [key]: fieldsResp[key]
+        }
+      }, {});
+  }
+
   function fetchAllFields(selectFieldTypes?: string[]): Promise<any> {
     return Promise.all([fetchFormInfoByFields(), fetchFormInfoByLayout()]).then(
       ([fieldsResp, layoutResp]) => {
         const fieldList = addLabel(
-          filterLookupField(modifiedLayoutResp(layoutResp), fieldsResp),
+          filterLookupField(
+            modifiedLayoutResp(layoutResp),
+            flattenFieldsForSubtable(fieldsResp)
+          ),
           fieldsResp
         );
+
         return selectFieldTypes
           ? fieldList.filter(
-              (field: any) => selectFieldTypes.indexOf(field.type) !== -1
-            )
+            (field: any) => selectFieldTypes.indexOf(field.type) !== -1
+          )
           : fieldList;
       }
     );
