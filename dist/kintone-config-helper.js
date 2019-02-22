@@ -154,10 +154,19 @@
               return !lookupFieldKeys.some(function (key) { return fieldsResp[key].code === layoutField.code; });
           });
       }
+      function flattenFieldsForSubtable(fieldsResp) {
+          return Object.keys(fieldsResp).reduce(function (fields, key) {
+              var _a, _b;
+              if (fieldsResp[key].type === "SUBTABLE") {
+                  return __assign({}, fields, (_a = {}, _a[key] = fieldsResp[key], _a), fieldsResp[key].fields);
+              }
+              return __assign({}, fields, (_b = {}, _b[key] = fieldsResp[key], _b));
+          }, {});
+      }
       function fetchAllFields(selectFieldTypes) {
           return Promise.all([fetchFormInfoByFields(), fetchFormInfoByLayout()]).then(function (_a) {
               var fieldsResp = _a[0], layoutResp = _a[1];
-              var fieldList = addLabel(filterLookupField(modifiedLayoutResp(layoutResp), fieldsResp), fieldsResp);
+              var fieldList = addLabel(filterLookupField(modifiedLayoutResp(layoutResp), flattenFieldsForSubtable(fieldsResp)), fieldsResp);
               return selectFieldTypes
                   ? fieldList.filter(function (field) { return selectFieldTypes.indexOf(field.type) !== -1; })
                   : fieldList;
