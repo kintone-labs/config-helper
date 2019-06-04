@@ -1,4 +1,6 @@
 # kintone-config-helper
+[![CircleCI](https://circleci.com/gh/kintone/config-helper.svg?style=shield)](https://circleci.com/gh/kintone/config-helper)
+
 A JavaScript library to help build out the Kintone plug-in config page.
 This library provides methods to retrieve App field information such as the Field Type, Field Code and Field Name.
 
