@@ -2,9 +2,12 @@
   "name": "kintone-config-helper",
   "version": "0.0.1",
   "description": "",
+  "engines": {
+    "node": ">=8"
+  },
   "main": "dist/kintone-config-helper.js",
   "scripts": {
-    "fix:lint": "npm run lint:ts -- --fix",
+    "fix:lint": "npm run lint:tslint -- --fix",
     "lint:ts": "tsc --noEmit",
     "lint:tslint": "tslint **/*.ts",
     "lint": "run-p lint:*",
