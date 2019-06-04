@@ -81,20 +81,19 @@ export function createGetFields(
   }
 
   function flattenFieldsForSubtable(fieldsResp: any) {
-    return Object.keys(fieldsResp).reduce(
-      (fields, key) => {
-        if (fieldsResp[key].type === "SUBTABLE") {
-          return {
-            ...fields,
-            [key]: fieldsResp[key],
-            ...fieldsResp[key].fields
-          }
-        }
+    return Object.keys(fieldsResp).reduce((fields, key) => {
+      if (fieldsResp[key].type === "SUBTABLE") {
         return {
           ...fields,
-          [key]: fieldsResp[key]
-        }
-      }, {});
+          [key]: fieldsResp[key],
+          ...fieldsResp[key].fields
+        };
+      }
+      return {
+        ...fields,
+        [key]: fieldsResp[key]
+      };
+    }, {});
   }
 
   function fetchAllFields(selectFieldTypes?: string[]): Promise<any> {
@@ -110,8 +109,8 @@ export function createGetFields(
 
         return selectFieldTypes
           ? fieldList.filter(
-            (field: any) => selectFieldTypes.indexOf(field.type) !== -1
-          )
+              (field: any) => selectFieldTypes.indexOf(field.type) !== -1
+            )
           : fieldList;
       }
     );
