@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "main": "dist/kintone-config-helper.js",
   "scripts": {
