@@ -35,7 +35,7 @@ export function createGetFields(
               .reduce((acc: any, cur: any) => acc.concat(cur), [])
           ];
         case "SUBTABLE":
-          layout.fields.forEach((layoutField: any) => (layoutField.tableCode = layout.code));
+          layout.fields.forEach((layoutField: any) => (layoutField.subtableCode = layout.code));
           return [
             ...acc,
             { type: layout.type, code: layout.code },
