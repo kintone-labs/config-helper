@@ -35,11 +35,16 @@ export function createGetFields(
               .reduce((acc: any, cur: any) => acc.concat(cur), [])
           ];
         case "SUBTABLE":
-          layout.fields.forEach((layoutField: any) => (layoutField.subtableCode = layout.code));
+          const layoutFieldsIncludeSubtableCode = layout.fields.map(
+            (layoutField: any) => ({
+              ...layoutField,
+              subtableCode: layout.code
+            })
+          );
           return [
             ...acc,
             { type: layout.type, code: layout.code },
-            ...getFieldInfo(layout.fields)
+            ...getFieldInfo(layoutFieldsIncludeSubtableCode)
           ];
       }
     }, []);
