@@ -128,6 +128,8 @@ CREATED_TIME | Created datetime | type (field type) | code (field code) | label 
 MODIFIER | Updated by | type (field type) | code (field code) | label (field name)
 UPDATED_TIME | Updated datetime | type (field type) | code (field code) | label (field name)
 
+If the field in `Table Field`, return the response includes `subtableCode`.
+
 ## Usage Example
 
 The following example shows how to create a drop-down list of all Date fields that exist in the Kintone App.
