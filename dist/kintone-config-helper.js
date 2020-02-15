@@ -120,9 +120,10 @@
                           .map(function (childLayout) { return getFieldInfo(childLayout.fields); })
                           .reduce(function (acc, cur) { return acc.concat(cur); }, []));
                   case "SUBTABLE":
+                      var layoutFieldsIncludeSubtableCode = layout.fields.map(function (layoutField) { return (__assign({}, layoutField, { subtableCode: layout.code })); });
                       return acc.concat([
                           { type: layout.type, code: layout.code }
-                      ], getFieldInfo(layout.fields));
+                      ], getFieldInfo(layoutFieldsIncludeSubtableCode));
               }
           }, []);
       }
