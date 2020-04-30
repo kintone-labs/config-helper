@@ -31,7 +31,7 @@
     "rollup-plugin-typescript": "^1.0.1",
     "tslib": "^1.11.1",
     "tslint": "^6.1.2",
-    "tslint-plugin-prettier": "^2.2.0",
+    "tslint-plugin-prettier": "^2.3.0",
     "typescript": "^3.8.3"
   },
   "dependencies": {}
