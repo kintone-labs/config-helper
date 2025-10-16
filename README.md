@@ -1,4 +1,10 @@
 # kintone-config-helper
+
+> [!IMPORTANT]
+> **⚠️ This repository has been archived.**  
+> For details, please refer to the [📢 Announcement Issue](https://github.com/kintone-labs/config-helper/issues/48).
+
+
 [![CircleCI](https://circleci.com/gh/kintone/config-helper.svg?style=shield)](https://circleci.com/gh/kintone/config-helper)
 
 A JavaScript library to help build out the Kintone plug-in config page.
